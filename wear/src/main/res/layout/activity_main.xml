@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <variable
+            name="authViewModel"
+            type="live.ebox.myapplication.viewmodels.AuthViewModel" />
+    </data>
+
+
+
+    <androidx.wear.widget.BoxInsetLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/red_a200"
+        android:padding="@dimen/box_inset_layout_padding"
+        tools:context=".MainActivity"
+        tools:deviceIds="wear">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/inner_frame_layout_padding"
+            app:boxedEdges="all">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+               <EditText
+                   android:id="@+id/usernameET"
+                   android:text="@={authViewModel.username}"
+                   android:hint="Username"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/passwordET"
+                    android:text="@={authViewModel.password}"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:onClick="@{authViewModel::submitButtonOnclick}"
+                    android:text="Login"
+                    android:id="@+id/submitBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.wear.widget.BoxInsetLayout>
+
+</layout>
