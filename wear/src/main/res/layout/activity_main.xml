@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="authViewModel"
+            name="viewModel"
             type="live.ebox.myapplication.viewmodels.AuthViewModel" />
     </data>
 
@@ -34,19 +34,19 @@
 
                <EditText
                    android:id="@+id/usernameET"
-                   android:text="@={authViewModel.username}"
+                   android:text="@={viewModel.username}"
                    android:hint="Username"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"/>
                 <EditText
                     android:id="@+id/passwordET"
-                    android:text="@={authViewModel.password}"
+                    android:text="@={viewModel.password}"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <Button
-                    android:onClick="@{authViewModel::submitButtonOnclick}"
+                    android:onClick="@{viewModel::submitButtonOnclick}"
                     android:text="Login"
                     android:id="@+id/submitBTN"
                     android:layout_width="wrap_content"

@@ -1,10 +1,13 @@
 package live.ebox.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.wear.ambient.AmbientModeSupport
+import live.ebox.myapplication.database.TestTable
 import live.ebox.myapplication.databinding.ActivityMainBinding
 import live.ebox.myapplication.listeners.AuthListeners
 import live.ebox.myapplication.util.toast
@@ -16,11 +19,19 @@ class MainActivity : FragmentActivity(), AmbientModeSupport.AmbientCallbackProvi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val  binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
-        binding.authViewModel = authViewModel
+        val binding =
+            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding.viewModel = authViewModel
         authViewModel.authListeners = this
         ambientController = AmbientModeSupport.attach(this)
         ambientController.setAmbientOffloadEnabled(true)
+    }
+
+    val employeeTablCchangeObserver = Observer<List<TestTable>> {
+
+        Log.d("HomeActivity", "data size = ${it.size}")
+
+        toast("data size = ${it.size}")
     }
 
     override fun onStarted() {
@@ -28,7 +39,7 @@ class MainActivity : FragmentActivity(), AmbientModeSupport.AmbientCallbackProvi
     }
 
     override fun onSuccess() {
-        TODO("Not yet implemented")
+        authViewModel.getData().observe(this, employeeTablCchangeObserver)
     }
 
     override fun onFailure() {
