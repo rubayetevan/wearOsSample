@@ -1,9 +1,11 @@
 package live.ebox.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
+import kotlinx.android.synthetic.main.activity_example.*
 import live.ebox.myapplication.databinding.ActivityExampleBinding
 
 
@@ -17,6 +19,10 @@ class MainActivity : FragmentActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_example)
         binding.viewModel = mainViewModel
         binding.lifecycleOwner = this
+
+        tBTN?.setOnClickListener {
+            startActivity(Intent(this, SecondActivity::class.java))
+        }
     }
 
 
