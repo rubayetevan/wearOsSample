@@ -21,7 +21,8 @@ class MainActivity : FragmentActivity() {
         binding.lifecycleOwner = this
 
         tBTN?.setOnClickListener {
-            startActivity(Intent(this, SecondActivity::class.java))
+            //startActivity(Intent(this, SecondActivity::class.java))
+            startActivity(Intent(this, TempActivity::class.java))
         }
     }
 

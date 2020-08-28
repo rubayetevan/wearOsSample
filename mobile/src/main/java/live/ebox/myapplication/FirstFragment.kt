@@ -21,13 +21,17 @@ class FirstFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        fCount1TV?.setOnClickListener {
+        f1TrnsBtn?.setOnClickListener {
             Navigation.findNavController(firstFragmentView).navigate(R.id.secondFragment)
         }
 
         secondViewModel.cc.observe(viewLifecycleOwner, {
-            fCount1TV?.text = (it ?: "0") + "\nFirst fragment"
+            fCount2TV?.text = (it ?: "0")
         })
+
+        f1IncBtn?.setOnClickListener {
+            secondViewModel.increaseCount()
+        }
 
     }
 }
